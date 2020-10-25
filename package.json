@@ -1,0 +1,14 @@
+{
+  "name": "roll_text",
+  "version": "0.0.1",
+  "description": "滚动字幕",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lizhaji",
+  "license": "ISC"
+}

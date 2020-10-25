@@ -1,0 +1,33 @@
+.roll {
+  overflow: hidden;
+}
+.text-box {
+  white-space: nowrap;
+  width: fit-content;
+  transform: translateX(100%);
+}
+/* .normal {
+  animation: move-normal ;
+}
+.play{
+  animation-play-state: running;
+}
+.stop {
+  animation-play-state: paused;
+}
+@keyframes move-normal {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes move-reverse {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+} */

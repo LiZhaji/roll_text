@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="box">aaaaaaaa</div>
+  <button>点我点我！！</button>
+  <button id="reset">重置</button>
+  <script src="../index.js"></script>
+  <script>
+    let content = 'Hi~ o(*￣▽￣*)ブ 啊啊啊啊啊啊啊啊呃呃呃呃呃呃呃呃呃呃呃鹅鹅鹅饿阿'
+    const options = {
+      container: '#box',
+      content,
+      speed: 1.5
+    }
+    const roller = new Roll(options)
+
+    const btn = document.querySelector('button')
+    let isPlay = false
+    btn.addEventListener('click', e => {
+      isPlay ? roller.stop() : roller.start()
+      isPlay = !isPlay
+    })
+    const btn2 = document.querySelector('#reset')
+    btn2.addEventListener('click', e => {
+      roller.reset()
+    })
+    const box = document.querySelector('#box')
+    setTimeout(() => {
+      options.content = '23zzzzzzzzzzzzz'
+      options.speed = 0.5
+      console.log(options,88);
+    }, 3000);
+  </script>
+</body>
+</html>
