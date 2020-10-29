@@ -2,18 +2,14 @@
  * @Author: lizhaji
  * @Date: 2020-10-22 19:27:49
  * @Last Modified by: lizhaji
- * @Last Modified time: 2020-10-25 17:09:42
+ * @Last Modified time: 2020-10-29 21:51:36
  */
 
 /**
- * 问题：
- * 1. css使用js变量
- * 2. 最终的距离应为文字的宽度，无法在css实现
- * 所以css版弃用，改为js动画
+ * 最终的距离应为文字的宽度，无法在css实现。所以css版弃用，改为js动画
  *
- * 3.  防攻击
+ * 防攻击
  */
-const { resolve: resolvePath } = require("path");
 
 class Roll {
   options = {
@@ -31,8 +27,7 @@ class Roll {
   _curDistance = 0; // 当前距离
   _step = 0; // 根据speed计算每次移动的距离
 
-  _initFlag = true; // 初始化是否结束
-  _needStart = false;
+  movingFlag = false; // 是否在移动
 
   raf = null;
 
@@ -54,32 +49,9 @@ class Roll {
     });
     this._init();
   }
-  async _init() {
-    await this._linkCss();
+  _init() {
     this._initDom();
     this._initDistance();
-    this._initFlag = false;
-    if (this._needStart) {
-      this._start();
-    }
-  }
-  // 引入css
-  _linkCss() {
-    return new Promise((reslove, reject) => {
-      const linkcss = document.createElement("link");
-      linkcss.setAttribute("rel", "stylesheet");
-      linkcss.setAttribute("type", "text/css");
-      linkcss.setAttribute("href", resolvePath(__dirname, "./roll.css"));
-      linkcss.onload = (e) => {
-        console.log("css link success!");
-        return reslove("css link success");
-      };
-      const header = document.querySelector("head");
-      header.appendChild(linkcss);
-
-      // const css = `<link rel="stylesheet" href="./roll.css" type="text/css" onload="linkOk">`;
-      // header.innerHTML += css;
-    });
   }
   _initDom() {
     const { container, width, height } = this.options;
@@ -87,24 +59,25 @@ class Roll {
 
     // 添加样式
     containerBox.style.width = `${width}px`;
-    containerBox.classList.add("roll");
+    containerBox.style.overflow = `hidden`;
 
     // 创建文字容器
-    const textBox = `<div class="text-box">${
+    const textBox = `<div style="white-space: nowrap; width: fit-content;transform: translateX(100%);">${
       this.options.content || containerBox.innerHTML
     }</div>`;
     containerBox.innerHTML = textBox;
 
     this.containerBox = containerBox;
     this.textBox = containerBox.firstElementChild;
-    console.log("_initDom", this.textBox, 233);
+    
+    console.log("_initDom success");
   }
 
   // TODO 值未改变，不需要重新赋值的情况
   diff() {}
   _render() {
     this.textBox.innerHTML =
-      this.options.options.content || containerBox.innerHTML;
+      this.options.options.content || this.containerBox.innerHTML;
     this.finalDistance = this.textBox.clientWidth;
     this._step = this.options.options.speed;
   }
@@ -142,14 +115,14 @@ class Roll {
     this.raf = requestAnimationFrame(move);
   }
   _start() {
-    this._needStart = true;
-    if (this._initFlag) {
+    if (this.movingFlag) {
       return;
     }
+    this.movingFlag = true;
     this._move();
   }
   _stop() {
-    this._needStart = false;
+    this.movingFlag = false;
     cancelAnimationFrame(this.raf);
   }
   _reset() {

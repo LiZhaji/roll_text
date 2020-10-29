@@ -1,14 +1,28 @@
 {
   "name": "roll_text",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "滚动字幕",
-  "main": "index.js",
+  "main": "main.js",
   "directories": {
     "test": "test"
   },
+  "keywords": [
+    "roll",
+    "text",
+    "marquee"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel index.js -o main.js"
   },
   "author": "lizhaji",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-syntax-class-properties": "^7.12.1",
+    "@babel/preset-env": "^7.12.1"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1"
+  }
 }
