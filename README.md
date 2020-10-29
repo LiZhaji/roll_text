@@ -5,6 +5,8 @@
 
 ```js
 const Roll = require('roll_text')
+// or
+import Roll from 'roll_text';
 
 const options = {
   container: '#box', // 必填，选择器
