@@ -1,7 +1,7 @@
 {
   "name": "roll_text",
-  "version": "0.0.4",
-  "description": "滚动字幕",
+  "version": "0.0.6",
+  "description": "滚动吧，字幕君",
   "main": "lib/main.js",
   "directories": {
     "test": "test"
@@ -24,5 +24,9 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:LiZhaji/roll_text.git"
   }
 }

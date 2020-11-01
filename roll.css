@@ -6,7 +6,7 @@
   width: fit-content;
   transform: translateX(100%);
 }
-/* .normal {
+.normal {
   animation: move-normal ;
 }
 .play{
@@ -30,4 +30,4 @@
   to {
     transform: translateX(100%);
   }
-} */
+}
